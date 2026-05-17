@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "deploy": "npm run build && gh workflow run deploy.yml --ref main"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

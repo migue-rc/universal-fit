@@ -22,12 +22,12 @@ const {
 const base =
   'inline-flex min-h-[var(--button-height)] items-center justify-center gap-2 rounded-[var(--radius-control)] px-5 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-app';
 const variants = {
-  accent: 'bg-accent text-on-accent hover:brightness-95',
+  accent: 'bg-accent !text-[var(--color-on-accent)] hover:brightness-95',
   primary: 'bg-primary text-white hover:brightness-110',
   secondary: 'border border-subtle bg-surface-raised text-white hover:border-border-strong',
   ghost: 'text-muted hover:text-white',
 };
-const disabledClass = 'cursor-not-allowed border border-subtle bg-surface text-faint';
+const disabledClass = 'cursor-not-allowed border border-border-strong bg-surface-raised text-muted';
 ---
 
 {

@@ -2,26 +2,125 @@
 import PageHeader from '../PageHeader.astro';
 import Section from '../Section.astro';
 import Shell from '../Shell.astro';
-import { DEFAULT_LOCALE, getMessages, type Locale } from '../../lib/i18n';
+import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n';
 
 interface Props {
   locale?: Locale;
 }
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
-const messages = getMessages(locale);
+
+const policySections = [
+  {
+    title: 'Who we are',
+    body: [
+      'Universal Fit is provided by Debloat. You can contact us about this policy or privacy questions at support@debloat.us.',
+      'This policy covers the Universal Fit mobile app and the Universal Fit public website.',
+    ],
+  },
+  {
+    title: 'App privacy posture',
+    body: [
+      'Universal Fit is designed as an offline-first workout app. The app keeps workout plans and logs on your device for core tracking features and does not include ads, analytics, or crash-reporting telemetry.',
+      'Debloat does not collect, sell, share, or transmit your workout data to Debloat servers.',
+    ],
+  },
+  {
+    title: 'Data stored locally on your device',
+    body: [
+      'When you use the app, Universal Fit may store imported workout-plan JSON, active and completed training sessions, set logs, cardio logs, exercise notes, exercise feedback, body weight values you enter, app settings, available plate sizes, language preference, current plan and session state, and related workout history.',
+      'This data is stored locally using app storage such as SQLite, MMKV, and the device file system. It is used to render plans, track workouts, calculate history, remember preferences, and keep the app working offline.',
+    ],
+  },
+  {
+    title: 'Files, clipboard, sharing, notifications, and haptics',
+    body: [
+      'If you choose to import a file, paste from the clipboard, copy a prompt or validation report, or open a shared JSON file on Android, the app accesses that content only to perform the action you requested.',
+      'The app may use local notifications and haptics for rest timers if you enable or use those features. These are local device features and are not remote push notifications from a Debloat server.',
+    ],
+  },
+  {
+    title: 'Website privacy',
+    body: [
+      'The Universal Fit website is a static site hosted on GitHub Pages. Debloat does not run a custom backend for the site, does not set tracking cookies, and does not currently use site analytics.',
+      'The site stores your selected website language in browser localStorage so language switching can work across pages. GitHub Pages and your browser or network provider may process standard request information, such as IP address and user agent, under their own policies.',
+    ],
+  },
+  {
+    title: 'External services you choose to open',
+    body: [
+      'Universal Fit may link to external services such as GitHub issue forms, app store pages, or media URLs included in a workout plan. If you open those links, the external service receives the request and handles it under its own privacy policy.',
+      'If you use another app or service to create a workout plan, share a file, back up device data, or send information to support, that action is controlled by you and by the other service you choose.',
+    ],
+  },
+  {
+    title: 'Retention and deletion',
+    body: [
+      'Workout data remains on your device until you delete it, delete the app data, or uninstall the app. Deleting a plan in the app is intended to remove that plan and related sessions from local app storage.',
+      'Full export and full reset controls are planned or in progress. Until those controls are complete, use the app features that are available for individual deletion and your operating system controls for app data removal.',
+    ],
+  },
+  {
+    title: 'Children, ads, sale, and tracking',
+    body: [
+      'Universal Fit is not directed to children. The app does not serve ads, does not sell personal information, and does not use your app activity to track you across apps or websites owned by other companies.',
+    ],
+  },
+  {
+    title: 'Changes to this policy',
+    body: [
+      'If Universal Fit adds cloud sync, analytics, crash reporting, subscriptions, advertising, health integrations, or other features that change how data is handled, Debloat will update this policy and the relevant app store privacy disclosures.',
+    ],
+  },
+];
 ---
 
-<Shell locale={locale} canonicalPath="/privacy" title={messages.privacy.title} description={messages.privacy.description}>
-  <PageHeader eyebrow={messages.privacy.eyebrow} title={messages.privacy.heading} intro={messages.privacy.intro} />
+<Shell
+  locale={locale}
+  canonicalPath="/privacy"
+  title="Privacy Policy"
+  description="Privacy Policy for Universal Fit by Debloat."
+>
+  <PageHeader
+    eyebrow="Privacy"
+    title="Privacy Policy"
+    intro="Universal Fit is built around local workout files and on-device training logs. This policy explains what the current app and website do with data."
+  />
   <Section class="pt-0">
-    <div class="grid gap-4 md:grid-cols-3">
-      {messages.privacy.cards.map(([title, copy]) => (
-        <article class="surface-card p-5">
-          <h2 class="text-xl font-black text-white">{title}</h2>
-          <p class="mt-3 leading-7 text-muted">{copy}</p>
-        </article>
-      ))}
+    <div class="surface-card p-5 sm:p-7">
+      <div class="grid gap-4 border-b border-subtle pb-6 md:grid-cols-[1fr_auto] md:items-start">
+        <div>
+          <p class="text-sm font-bold uppercase text-accent">Last updated: May 17, 2026</p>
+          <h2 class="mt-3 text-2xl font-black text-white">Universal Fit by Debloat</h2>
+          <p class="mt-3 max-w-3xl leading-7 text-muted">
+            Contact Debloat at <a class="font-semibold text-accent" href="mailto:support@debloat.us">support@debloat.us</a>.
+          </p>
+        </div>
+        <div class="rounded-[7px] border border-subtle bg-app px-4 py-3 text-sm font-semibold text-white">
+          Workout data stays local
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-8">
+        {policySections.map((section) => (
+          <section>
+            <h2 class="text-xl font-black text-white">{section.title}</h2>
+            <div class="mt-3 grid gap-3">
+              {section.body.map((paragraph) => (
+                <p class="leading-7 text-muted">{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-8 rounded-[7px] border border-subtle bg-app p-4">
+        <h2 class="text-lg font-black text-white">App Store and Google Play disclosures</h2>
+        <p class="mt-3 leading-7 text-muted">
+          Store privacy forms must match the actual app version submitted for review. If a later release adds any SDK or feature
+          that transmits user data off the device, Debloat will update this policy and the store privacy answers before release.
+        </p>
+      </div>
     </div>
   </Section>
 </Shell>

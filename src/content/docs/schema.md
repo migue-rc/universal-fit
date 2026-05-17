@@ -128,7 +128,7 @@ References to bundled exercises share the same ID space — see [06-exercise-lib
 }
 ```
 
-**Providers v1:** `youtube`, `vimeo`, `mp4` (direct URL). Player: `react-native-youtube-iframe` for YT; generic web view for Vimeo; `expo-av` for MP4. Videos require network; offline UI falls back to the bundled static image.
+**Providers v1:** `youtube`, `vimeo`, `mp4` (direct URL). Player: embedded web view for YouTube/Vimeo; `expo-video` for MP4. Videos require network; offline UI falls back to the bundled static image.
 
 ---
 

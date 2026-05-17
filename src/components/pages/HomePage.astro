@@ -19,6 +19,25 @@ const messages = getMessages(locale);
 const plans = await loadPlans(locale);
 const heroImage = withBase('/assets/screens/app-overview.webp');
 const modalityLabels = messages.taxonomy.modality as Record<string, string>;
+const screenImages = [
+  '/assets/screens/screen-library.webp',
+  '/assets/screens/screen-import-plan.webp',
+  '/assets/screens/screen-generate-ai.webp',
+  '/assets/screens/screen-history.webp',
+  '/assets/screens/screen-settings.webp',
+];
+const screenCards = messages.home.screens.cards.map((card, index) => {
+  const title = card[0] ?? '';
+  const copy = card[1] ?? '';
+  const alt = card[2] ?? title;
+  const image = screenImages[index] ?? '/assets/screens/screen-library.webp';
+  return {
+    title,
+    copy,
+    alt,
+    image: withBase(image),
+  };
+});
 ---
 
 <Shell locale={locale} canonicalPath="/">
@@ -76,6 +95,26 @@ const modalityLabels = messages.taxonomy.modality as Record<string, string>;
         ))}
       </div>
       <PhonePreview image={withBase('/assets/screens/workout-home.webp')} alt={messages.home.app.phoneAlt} />
+    </div>
+  </Section>
+
+  <Section eyebrow={messages.home.screens.eyebrow} title={messages.home.screens.title} intro={messages.home.screens.intro}>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {screenCards.map((screen) => (
+        <figure class="surface-card overflow-hidden p-0">
+          <img
+            src={screen.image}
+            alt={screen.alt}
+            class="aspect-[24/41] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="border-t border-subtle p-4">
+            <h3 class="text-sm font-black text-white">{screen.title}</h3>
+            <p class="mt-2 text-xs leading-5 text-muted">{screen.copy}</p>
+          </figcaption>
+        </figure>
+      ))}
     </div>
   </Section>
 

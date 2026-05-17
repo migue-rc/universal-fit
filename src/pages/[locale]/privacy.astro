@@ -1,0 +1,15 @@
+---
+import PrivacyPage from '../../components/pages/PrivacyPage.astro';
+import { DEFAULT_LOCALE, SITE_LOCALES } from '../../lib/i18n';
+
+export function getStaticPaths() {
+  return SITE_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+---
+
+<PrivacyPage locale={locale} />

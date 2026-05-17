@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest an app, schema, website, or workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      placeholder: Describe the training or plan-authoring situation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      placeholder: What should Universal Fit do?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Mobile app
+        - Plan JSON schema
+        - Public plan catalog
+        - Website/docs
+        - GitHub/project workflow
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

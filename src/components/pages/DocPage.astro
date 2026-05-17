@@ -1,0 +1,39 @@
+---
+import Button from '../Button.astro';
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, localizedUrl, type Locale } from '../../lib/i18n';
+import { renderMarkdownDoc } from '../../lib/markdown';
+
+interface Props {
+  locale?: Locale;
+  doc: 'llm-brief' | 'schema';
+}
+
+const { locale = DEFAULT_LOCALE, doc } = Astro.props;
+const messages = getMessages(locale);
+const fileName = doc === 'llm-brief' ? 'llm-brief.md' : 'schema.md';
+const docMessages = doc === 'llm-brief' ? messages.docs.llmBrief : messages.docs.schema;
+const { html } = await renderMarkdownDoc(fileName, locale);
+---
+
+<Shell locale={locale} canonicalPath={`/docs/${doc}`} title={docMessages.title} description={docMessages.description}>
+  <PageHeader eyebrow={messages.docs.docs} title={docMessages.heading} intro={docMessages.intro} />
+  <Section class="pt-0">
+    <div class="mb-6 flex flex-wrap gap-3">
+      {doc === 'llm-brief' ? (
+        <>
+          <Button href={localizedUrl('/generate-with-ai', locale)} variant="accent">{messages.docs.generateWithAi}</Button>
+          <Button href={localizedUrl('/docs/schema', locale)} variant="secondary">{messages.docs.fullSchema}</Button>
+        </>
+      ) : (
+        <>
+          <Button href={localizedUrl('/docs/llm-brief', locale)} variant="accent">{messages.docs.llmBriefLink}</Button>
+          <Button href={localizedUrl('/docs/library', locale)} variant="secondary">{messages.docs.exerciseLibrary}</Button>
+        </>
+      )}
+    </div>
+    <article class="prose-content max-w-none" set:html={html} />
+  </Section>
+</Shell>

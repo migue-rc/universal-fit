@@ -1,0 +1,104 @@
+---
+import Badge from '../Badge.astro';
+import Button from '../Button.astro';
+import CopyButton from '../CopyButton';
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, interpolate, type Locale } from '../../lib/i18n';
+import { formatGoal, type PlanSummary } from '../../lib/plans';
+import { absoluteUrl, withBase } from '../../lib/siteConfig';
+
+interface Props {
+  locale?: Locale;
+  plan: PlanSummary;
+}
+
+const { locale = DEFAULT_LOCALE, plan } = Astro.props;
+const messages = getMessages(locale);
+const detail = messages.planDetail;
+const sourceUrl = absoluteUrl(`/plans/${plan.slug}.json`);
+const deepLink = `universalfit://import?source=${encodeURIComponent(sourceUrl)}`;
+const sampleDay = plan.raw.weeks.flatMap((week) => week.days).find((day) => !day.rest_day) || plan.raw.weeks[0].days[0];
+const prompt = interpolate(detail.prompt, { url: sourceUrl });
+const levelLabels = messages.taxonomy.level as Record<string, string>;
+---
+
+<Shell locale={locale} canonicalPath={`/plans/${plan.slug}`} title={plan.name} description={plan.description}>
+  <PageHeader eyebrow={detail.eyebrow} title={plan.name} intro={plan.description} />
+  <Section class="pt-0">
+    <div class="grid gap-8 lg:grid-cols-[1fr_22rem]">
+      <article class="grid gap-6">
+        <div class="flex flex-wrap gap-2">
+          <Badge tone="accent">{formatGoal(plan.goal, locale)}</Badge>
+          <Badge tone="primary">{levelLabels[plan.level] || plan.level}</Badge>
+          <Badge tone="neutral">{plan.durationWeeks} {messages.common.weeks}</Badge>
+          <Badge tone="neutral">{plan.daysPerWeek} {messages.common.daysPerWeek}</Badge>
+        </div>
+
+        <div class="rounded-[var(--radius-card)] border border-subtle bg-surface p-5">
+          <h2 class="text-2xl font-black text-white">{detail.sampleDay}: {sampleDay.name}</h2>
+          <p class="mt-2 text-sm text-muted">{interpolate(detail.estimatedMinutes, { minutes: sampleDay.estimated_minutes || plan.estimatedMinutes })}</p>
+          <div class="mt-5 grid gap-3">
+            {(sampleDay.blocks || []).map((block) => (
+              <section class="rounded-[var(--radius-card)] border border-subtle bg-app p-4">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="font-black uppercase text-white">{block.name || block.type}</h3>
+                  <span class="text-xs font-semibold uppercase text-muted">
+                    {block.items.length} {block.items.length === 1 ? detail.itemOne : detail.itemOther}
+                  </span>
+                </div>
+                <ul class="mt-3 grid gap-2">
+                  {block.items.map((item: any) => (
+                    <li class="rounded-[6px] bg-surface px-3 py-2 text-sm text-muted">
+                      {item.exercise_ref || item.kind}
+                      {item.sets_template ? ` · ${interpolate(detail.sets, { count: item.sets_template.count })}` : ''}
+                      {item.cardio ? ` · ${item.cardio.structure}` : ''}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-[var(--radius-card)] border border-subtle bg-surface p-5">
+          <h2 class="text-2xl font-black text-white">{detail.programOutline}</h2>
+          <div class="mt-5 grid gap-3">
+            {plan.raw.weeks.map((week) => (
+              <details class="rounded-[var(--radius-card)] border border-subtle bg-app p-4" open={week.week === 1}>
+                <summary class="cursor-pointer font-bold text-white">
+                  {interpolate(detail.week, { week: week.week })}{week.name ? ` · ${week.name}` : ''}
+                </summary>
+                <div class="mt-3 grid gap-2">
+                  {week.days.map((day) => (
+                    <div class="flex items-center justify-between gap-3 rounded-[6px] bg-surface px-3 py-2 text-sm">
+                      <span class="text-white">{interpolate(detail.day, { day: day.day })}: {day.name}</span>
+                      <span class="text-muted">{day.estimated_minutes || plan.estimatedMinutes}m</span>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </article>
+
+      <aside class="grid h-fit gap-4">
+        <div class="surface-card p-5">
+          <h2 class="text-xl font-black text-white">{detail.useThisPlan}</h2>
+          <p class="mt-3 text-sm leading-6 text-muted">{detail.useCopy}</p>
+          <div class="mt-5 grid gap-3">
+            <Button href={withBase(`/plans/${plan.slug}.json`)} download={`${plan.slug}.json`} variant="accent">{messages.common.downloadJson}</Button>
+            <Button href={deepLink} variant="primary">{detail.openInApp}</Button>
+            <CopyButton client:load text={prompt} label={messages.common.copyLlmPrompt} copiedLabel={messages.common.copied} />
+          </div>
+        </div>
+        <div class="rounded-[var(--radius-card)] border border-subtle bg-surface p-5">
+          <h2 class="text-sm font-bold uppercase text-muted">{messages.common.source}</h2>
+          <p class="mt-3 break-words text-sm leading-6 text-muted">{sourceUrl}</p>
+        </div>
+      </aside>
+    </div>
+  </Section>
+</Shell>

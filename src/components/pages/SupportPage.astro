@@ -1,0 +1,38 @@
+---
+import Button from '../Button.astro';
+import Card from '../Card.astro';
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, localizedUrl, type Locale } from '../../lib/i18n';
+import { issueTemplateUrl, siteConfig } from '../../lib/siteConfig';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+const templates = ['bug_report.yml', 'feature_request.yml', 'plan_submission.yml', 'schema_feedback.yml'];
+---
+
+<Shell locale={locale} canonicalPath="/support" title={messages.support.title} description={messages.support.description}>
+  <PageHeader eyebrow={messages.support.eyebrow} title={messages.support.heading} intro={messages.support.intro} />
+  <Section class="pt-0">
+    <div class="grid gap-4 md:grid-cols-2">
+      {messages.support.cards.map(([title, copy, cta], index) => (
+        <Card>
+          <h2 class="text-2xl font-black text-white">{title}</h2>
+          <p class="mt-3 leading-7 text-muted">{copy}</p>
+          <Button href={issueTemplateUrl(templates[index])} external variant="accent" class="mt-6">{cta}</Button>
+        </Card>
+      ))}
+    </div>
+  </Section>
+  <Section eyebrow={messages.support.before.eyebrow} title={messages.support.before.title} intro={messages.support.before.intro}>
+    <div class="flex flex-wrap gap-3">
+      <Button href={siteConfig.repoUrl + '/issues'} external variant="secondary">{messages.support.before.issues}</Button>
+      <Button href={localizedUrl('/docs/llm-brief', locale)} variant="ghost">{messages.support.before.brief}</Button>
+    </div>
+  </Section>
+</Shell>

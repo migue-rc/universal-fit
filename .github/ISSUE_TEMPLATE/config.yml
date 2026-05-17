@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Universal Fit docs
+    url: https://migue-rc.github.io/universal-fit/docs/llm-brief
+    about: Read the plan JSON authoring brief before filing schema questions.

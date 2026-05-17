@@ -1,0 +1,149 @@
+---
+import '../styles/global.css';
+import {
+  DEFAULT_LOCALE,
+  LANGUAGE_LABELS,
+  SITE_LOCALES,
+  absoluteLocalizedUrl,
+  alternateLinks,
+  getMessages,
+  localizedUrl,
+  type Locale,
+} from '../lib/i18n';
+import { absoluteUrl, siteConfig, withBase } from '../lib/siteConfig';
+
+interface Props {
+  title?: string;
+  description?: string;
+  locale?: Locale;
+  canonicalPath?: string;
+}
+
+const { title, locale = DEFAULT_LOCALE, canonicalPath = '/' } = Astro.props;
+const messages = getMessages(locale);
+const description = Astro.props.description ?? messages.site.description;
+const pageTitle = title ? `${title} · ${siteConfig.name}` : siteConfig.name;
+const appIcon = withBase('/assets/icons/app-icon.png');
+const ogImage = absoluteUrl('/assets/icons/app-icon.png');
+const nav = [
+  { href: '/', label: messages.shell.nav.home },
+  { href: '/plans', label: messages.shell.nav.plans },
+  { href: '/generate-with-ai', label: messages.shell.nav.build },
+  { href: '/support', label: messages.shell.nav.support },
+  { href: '/roadmap', label: messages.shell.nav.roadmap },
+];
+const alternates = alternateLinks(canonicalPath);
+const canonicalUrl = absoluteLocalizedUrl(canonicalPath, locale);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0D0D0D" />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/png" sizes="48x48" href={withBase('/favicon.png')} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/assets/icons/app-icon.svg')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('/site.webmanifest')} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.locale} href={alternate.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={absoluteLocalizedUrl(canonicalPath, DEFAULT_LOCALE)} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="sticky top-0 z-30 border-b border-subtle bg-app/90 backdrop-blur-xl">
+        <div class="mx-auto flex min-h-16 w-full max-w-[var(--page-max)] items-center justify-between px-[var(--page-pad)]">
+          <a href={localizedUrl('/', locale)} class="flex items-center gap-3 font-black text-white" aria-label={messages.shell.homeAria}>
+            <img src={appIcon} alt="" class="h-8 w-8 rounded-[7px]" />
+            <span>Universal Fit</span>
+          </a>
+          <nav class="hidden items-center gap-1 md:flex" aria-label={messages.shell.primaryNav}>
+            {nav.map((item) => (
+              <a href={localizedUrl(item.href, locale)} class="rounded-[7px] px-3 py-2 text-sm font-semibold text-muted hover:bg-surface hover:text-white">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div class="flex items-center gap-2">
+            <label class="sr-only" for="site-language">{messages.shell.language}</label>
+            <select
+              id="site-language"
+              data-language-switcher
+              class="h-10 rounded-[7px] border border-subtle bg-surface px-2 text-sm font-semibold text-white outline-none focus:border-accent"
+              aria-label={messages.shell.language}
+            >
+              {SITE_LOCALES.map((item) => (
+                <option value={localizedUrl(canonicalPath, item)} data-locale={item} selected={item === locale}>
+                  {LANGUAGE_LABELS[item]}
+                </option>
+              ))}
+            </select>
+            <a href={localizedUrl('/support', locale)} class="rounded-[7px] bg-accent px-3 py-2 text-sm font-bold text-on-accent md:hidden">
+              {messages.shell.mobileHelp}
+            </a>
+          </div>
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="border-t border-subtle">
+        <div class="mx-auto grid w-full max-w-[var(--page-max)] gap-8 px-[var(--page-pad)] py-10 md:grid-cols-[1.2fr_1fr_1fr]">
+          <div>
+            <div class="flex items-center gap-3 font-black text-white">
+              <img src={appIcon} alt="" class="h-8 w-8 rounded-[7px]" />
+              Universal Fit
+            </div>
+            <p class="mt-4 max-w-md text-sm leading-6 text-muted">
+              {messages.shell.tagline}
+            </p>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold text-white">{messages.shell.explore}</h2>
+            <div class="mt-3 grid gap-2 text-sm text-muted">
+              <a href={localizedUrl('/plans', locale)}>{messages.shell.nav.plans}</a>
+              <a href={localizedUrl('/generate-with-ai', locale)}>{messages.shell.workoutBuilder}</a>
+              <a href={localizedUrl('/docs/llm-brief', locale)}>{messages.shell.llmBrief}</a>
+              <a href={localizedUrl('/docs/library', locale)}>{messages.shell.exerciseLibrary}</a>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold text-white">{messages.shell.project}</h2>
+            <div class="mt-3 grid gap-2 text-sm text-muted">
+              <a href={siteConfig.repoUrl}>{messages.shell.github}</a>
+              <a href={localizedUrl('/support', locale)}>{messages.shell.nav.support}</a>
+              <a href={localizedUrl('/privacy', locale)}>{messages.shell.privacy}</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script is:inline define:vars={{ locale }}>
+      const switcher = document.querySelector('[data-language-switcher]');
+      try {
+        localStorage.setItem('uf-site-language', locale);
+      } catch {}
+      switcher?.addEventListener('change', (event) => {
+        const target = event.currentTarget;
+        if (target instanceof HTMLSelectElement) {
+          try {
+            localStorage.setItem('uf-site-language', target.selectedOptions[0]?.dataset.locale || locale);
+          } catch {}
+          window.location.href = target.value;
+        }
+      });
+    </script>
+  </body>
+</html>

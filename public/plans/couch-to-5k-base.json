@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "plan": {
+    "id": "couch-to-5k-base",
+    "name": "Couch to 5K Base",
+    "author": "Universal Fit",
+    "description": "A gentle run-walk progression for building consistent aerobic work without needing GPS inside the plan file.",
+    "goal": "endurance",
+    "level": "beginner",
+    "duration_weeks": 4,
+    "days_per_week": 3,
+    "tags": ["running", "cardio", "bodyweight"]
+  },
+  "settings": {
+    "units": { "weight": "kg", "distance": "km" }
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "days": [
+        {
+          "day": 1,
+          "name": "Run-Walk Intro",
+          "estimated_minutes": 30,
+          "blocks": [
+            {
+              "type": "main",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "running",
+                  "cardio": {
+                    "structure": "intervals",
+                    "modality": "running",
+                    "warmup": { "duration_minutes": 5 },
+                    "intervals": [{ "repeat": 8, "work": { "duration_minutes": 1 }, "rest": { "duration_seconds": 90, "type": "walk" } }],
+                    "cooldown": { "duration_minutes": 5 }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        { "day": 3, "name": "Easy Repeat", "estimated_minutes": 30, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "steady", "modality": "running", "target": { "duration_minutes": 25, "rpe_target": 4 } } }] }] },
+        { "day": 5, "name": "Run-Walk Intro", "estimated_minutes": 30, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "intervals", "modality": "running", "warmup": { "duration_minutes": 5 }, "intervals": [{ "repeat": 8, "work": { "duration_minutes": 1 }, "rest": { "duration_seconds": 90, "type": "walk" } }], "cooldown": { "duration_minutes": 5 } } }] }] }
+      ]
+    },
+    {
+      "week": 2,
+      "days": [
+        { "day": 1, "name": "Longer Jog Blocks", "estimated_minutes": 32, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "intervals", "modality": "running", "warmup": { "duration_minutes": 5 }, "intervals": [{ "repeat": 6, "work": { "duration_minutes": 2 }, "rest": { "duration_seconds": 90, "type": "walk" } }], "cooldown": { "duration_minutes": 5 } } }] }] },
+        { "day": 3, "name": "Easy Aerobic", "estimated_minutes": 30, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "steady", "modality": "running", "target": { "duration_minutes": 28, "rpe_target": 4 } } }] }] },
+        { "day": 5, "name": "Longer Jog Blocks", "estimated_minutes": 32, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "intervals", "modality": "running", "warmup": { "duration_minutes": 5 }, "intervals": [{ "repeat": 6, "work": { "duration_minutes": 2 }, "rest": { "duration_seconds": 90, "type": "walk" } }], "cooldown": { "duration_minutes": 5 } } }] }] }
+      ]
+    },
+    {
+      "week": 3,
+      "days": [
+        { "day": 1, "name": "Three-Minute Repeats", "estimated_minutes": 35, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "intervals", "modality": "running", "warmup": { "duration_minutes": 5 }, "intervals": [{ "repeat": 5, "work": { "duration_minutes": 3 }, "rest": { "duration_seconds": 120, "type": "walk" } }], "cooldown": { "duration_minutes": 5 } } }] }] },
+        { "day": 3, "name": "Easy Aerobic", "estimated_minutes": 32, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "steady", "modality": "running", "target": { "duration_minutes": 30, "rpe_target": 4 } } }] }] },
+        { "day": 5, "name": "Three-Minute Repeats", "estimated_minutes": 35, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "intervals", "modality": "running", "warmup": { "duration_minutes": 5 }, "intervals": [{ "repeat": 5, "work": { "duration_minutes": 3 }, "rest": { "duration_seconds": 120, "type": "walk" } }], "cooldown": { "duration_minutes": 5 } } }] }] }
+      ]
+    },
+    {
+      "week": 4,
+      "days": [
+        { "day": 1, "name": "Continuous Easy Run", "estimated_minutes": 35, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "steady", "modality": "running", "target": { "duration_minutes": 30, "rpe_target": 5 } } }] }] },
+        { "day": 3, "name": "Recovery Walk Jog", "estimated_minutes": 30, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "fartlek", "modality": "running", "target": { "duration_minutes": 28 }, "notes": "Alternate easy jogging and walking by feel." } }] }] },
+        { "day": 5, "name": "5K Confidence Day", "estimated_minutes": 40, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "running", "cardio": { "structure": "steady", "modality": "running", "target": { "distance_km": 5, "rpe_target": 6 } } }] }] }
+      ]
+    }
+  ]
+}

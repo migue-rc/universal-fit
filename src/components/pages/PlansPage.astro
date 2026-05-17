@@ -1,0 +1,41 @@
+---
+import PageHeader from '../PageHeader.astro';
+import PlanFilters from '../PlanFilters';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, type Locale } from '../../lib/i18n';
+import { loadPlans } from '../../lib/plans';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+const plans = await loadPlans(locale);
+const catalogPlans = plans.map(({ raw, ...plan }) => plan);
+const labels = {
+  ...messages.planFilters,
+  planSingular: messages.common.planSingular,
+  planPlural: messages.common.planPlural,
+  duration: messages.common.duration,
+  weekly: messages.common.weekly,
+  avgDay: messages.common.avgDay,
+  by: messages.common.by,
+  viewPlan: messages.common.viewPlan,
+  downloadJson: messages.common.downloadJson,
+  all: messages.taxonomy.all,
+  taxonomy: {
+    goal: messages.taxonomy.goal,
+    level: messages.taxonomy.level,
+    modality: messages.taxonomy.modality,
+  },
+};
+---
+
+<Shell locale={locale} canonicalPath="/plans" title={messages.plansPage.title} description={messages.plansPage.description}>
+  <PageHeader eyebrow={messages.plansPage.eyebrow} title={messages.plansPage.heading} intro={messages.plansPage.intro} />
+  <Section>
+    <PlanFilters client:load plans={catalogPlans} labels={labels} />
+  </Section>
+</Shell>

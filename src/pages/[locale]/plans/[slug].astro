@@ -1,0 +1,24 @@
+---
+import PlanDetailPage from '../../../components/pages/PlanDetailPage.astro';
+import { DEFAULT_LOCALE, SITE_LOCALES, type Locale } from '../../../lib/i18n';
+import { loadPlans } from '../../../lib/plans';
+
+export async function getStaticPaths() {
+  const locales = SITE_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE);
+  const entries = await Promise.all(
+    locales.map(async (locale) => {
+      const plans = await loadPlans(locale as Locale);
+      return plans.map((plan) => ({
+        params: { locale, slug: plan.slug },
+        props: { locale, plan },
+      }));
+    })
+  );
+
+  return entries.flat();
+}
+
+const { locale, plan } = Astro.props;
+---
+
+<PlanDetailPage locale={locale} plan={plan} />

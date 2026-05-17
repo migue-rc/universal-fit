@@ -1,0 +1,16 @@
+---
+import PlanDetailPage from '../../components/pages/PlanDetailPage.astro';
+import { loadPlans } from '../../lib/plans';
+
+export async function getStaticPaths() {
+  const plans = await loadPlans();
+  return plans.map((plan) => ({
+    params: { slug: plan.slug },
+    props: { plan },
+  }));
+}
+
+const { plan } = Astro.props;
+---
+
+<PlanDetailPage plan={plan} />

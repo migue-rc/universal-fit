@@ -1,0 +1,59 @@
+---
+import Button from '../Button.astro';
+import CopyButton from '../CopyButton';
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import WorkoutBuilder from '../WorkoutBuilder';
+import { DEFAULT_LOCALE, getMessages, interpolate, localizedUrl, type Locale } from '../../lib/i18n';
+import { renderMarkdownDoc } from '../../lib/markdown';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+const { markdown } = await renderMarkdownDoc('llm-brief.md', locale);
+const prompt = interpolate(messages.generate.prompt, { brief: markdown });
+const builderCommon = {
+  valid: messages.common.valid,
+  needsFixes: messages.common.needsFixes,
+  weeks: messages.common.weeks,
+  days: messages.common.daysPerWeek.replace('/week', '').replace('/semana', '').replace('/settimana', '').trim() || 'days',
+  sessions: 'sessions',
+  downloadJson: messages.common.downloadJson,
+};
+---
+
+<Shell locale={locale} canonicalPath="/generate-with-ai" title={messages.generate.title} description={messages.generate.description}>
+  <PageHeader eyebrow={messages.generate.eyebrow} title={messages.generate.heading} intro={messages.generate.intro} />
+  <Section class="pt-0">
+    <div class="grid gap-4 md:grid-cols-3">
+      {messages.generate.steps.map(([title, copy, cta], index) => (
+        <div class="rounded-[var(--radius-card)] border border-subtle bg-surface p-5">
+          <h2 class="text-xl font-black text-white">{title}</h2>
+          <p class="mt-3 text-sm leading-6 text-muted">{copy}</p>
+          {index === 0 && <CopyButton client:load text={prompt} label={cta} copiedLabel={messages.common.copied} className="mt-5 w-full" />}
+          {index === 1 && (
+            <div class="mt-5 flex flex-wrap gap-2">
+              <Button href="https://chat.openai.com/" variant="secondary" external>ChatGPT</Button>
+              <Button href="https://claude.ai/" variant="secondary" external>Claude</Button>
+            </div>
+          )}
+          {index === 2 && <Button href={localizedUrl('/docs/llm-brief', locale)} variant="ghost" class="mt-5">{cta}</Button>}
+        </div>
+      ))}
+    </div>
+  </Section>
+  <Section
+    class="pt-0"
+    eyebrow={messages.generate.builderEyebrow}
+    title={messages.generate.builderTitle}
+    intro={messages.generate.builderIntro}
+  >
+    <div id="builder">
+      <WorkoutBuilder client:load labels={messages.builder} taxonomy={messages.taxonomy} common={builderCommon} />
+    </div>
+  </Section>
+</Shell>

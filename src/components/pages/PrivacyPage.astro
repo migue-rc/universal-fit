@@ -1,0 +1,27 @@
+---
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+---
+
+<Shell locale={locale} canonicalPath="/privacy" title={messages.privacy.title} description={messages.privacy.description}>
+  <PageHeader eyebrow={messages.privacy.eyebrow} title={messages.privacy.heading} intro={messages.privacy.intro} />
+  <Section class="pt-0">
+    <div class="grid gap-4 md:grid-cols-3">
+      {messages.privacy.cards.map(([title, copy]) => (
+        <article class="surface-card p-5">
+          <h2 class="text-xl font-black text-white">{title}</h2>
+          <p class="mt-3 leading-7 text-muted">{copy}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+</Shell>

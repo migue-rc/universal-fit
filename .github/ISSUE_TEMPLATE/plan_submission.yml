@@ -1,0 +1,43 @@
+name: Plan JSON submission
+description: Suggest a plan example for the public catalog.
+title: "[Plan]: "
+labels: ["plan-example", "needs-review"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Plan name
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options:
+        - beginner
+        - intermediate
+        - advanced
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Who is this plan for?
+      placeholder: Goal, schedule, equipment, and assumptions.
+    validations:
+      required: true
+  - type: textarea
+    id: json
+    attributes:
+      label: Plan JSON
+      description: Paste the full JSON or link to a gist.
+      render: json
+    validations:
+      required: true
+  - type: checkboxes
+    id: permissions
+    attributes:
+      label: Permission
+      options:
+        - label: This can be used as a public Universal Fit example plan.
+          required: true

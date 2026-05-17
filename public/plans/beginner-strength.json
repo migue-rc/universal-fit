@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "plan": {
+    "id": "beginner-strength-4wk",
+    "name": "Beginner Strength 4-Week",
+    "author": "Universal Fit",
+    "description": "A calm three-day strength plan built around squats, presses, hinges, and rows.",
+    "goal": "strength",
+    "level": "beginner",
+    "duration_weeks": 4,
+    "days_per_week": 3,
+    "tags": ["strength", "barbell", "dumbbell", "beginner"]
+  },
+  "settings": {
+    "units": { "weight": "kg", "distance": "km" },
+    "rest_default_seconds": 120
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "name": "Learn the pattern",
+      "days": [
+        {
+          "day": 1,
+          "name": "Full Body A",
+          "estimated_minutes": 50,
+          "blocks": [
+            {
+              "type": "main",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "goblet_squat",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 8, "load": { "rpe": 7 }, "rest_seconds": 120 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dumbbell_bench_press",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 10, "load": { "rpe": 7 }, "rest_seconds": 90 }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Full Body B",
+          "estimated_minutes": 45,
+          "blocks": [
+            {
+              "type": "main",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "romanian_deadlift",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 8, "load": { "rpe": 7 }, "rest_seconds": 120 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "one_arm_dumbbell_row",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 10, "load": { "rpe": 7 }, "rest_seconds": 90 }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Full Body C",
+          "estimated_minutes": 50,
+          "blocks": [
+            {
+              "type": "main",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "trap_bar_deadlift",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 5, "load": { "rpe": 7 }, "rest_seconds": 150 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dumbbell_shoulder_press",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 8, "load": { "rpe": 7 }, "rest_seconds": 90 }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "name": "Add volume",
+      "days": [
+        { "day": 1, "name": "Full Body A", "estimated_minutes": 55, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "goblet_squat", "sets_template": { "count": 4, "set": { "reps": 8, "load": { "rpe": 7 }, "rest_seconds": 120 } } }] }] },
+        { "day": 3, "name": "Full Body B", "estimated_minutes": 50, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "sets_template": { "count": 4, "set": { "reps": 8, "load": { "rpe": 7 }, "rest_seconds": 120 } } }] }] },
+        { "day": 5, "name": "Full Body C", "estimated_minutes": 55, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "trap_bar_deadlift", "sets_template": { "count": 4, "set": { "reps": 5, "load": { "rpe": 7 }, "rest_seconds": 150 } } }] }] }
+      ]
+    },
+    {
+      "week": 3,
+      "name": "Practice heavier sets",
+      "days": [
+        { "day": 1, "name": "Full Body A", "estimated_minutes": 55, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "goblet_squat", "sets_template": { "count": 4, "set": { "reps": 6, "load": { "rpe": 8 }, "rest_seconds": 150 } } }] }] },
+        { "day": 3, "name": "Full Body B", "estimated_minutes": 50, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "sets_template": { "count": 4, "set": { "reps": 6, "load": { "rpe": 8 }, "rest_seconds": 150 } } }] }] },
+        { "day": 5, "name": "Full Body C", "estimated_minutes": 55, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "trap_bar_deadlift", "sets_template": { "count": 4, "set": { "reps": 4, "load": { "rpe": 8 }, "rest_seconds": 180 } } }] }] }
+      ]
+    },
+    {
+      "week": 4,
+      "name": "Deload and retest",
+      "deload": true,
+      "days": [
+        { "day": 1, "name": "Easy Full Body A", "estimated_minutes": 40, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "goblet_squat", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "rpe": 6 }, "rest_seconds": 90 } } }] }] },
+        { "day": 3, "name": "Easy Full Body B", "estimated_minutes": 40, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "rpe": 6 }, "rest_seconds": 90 } } }] }] },
+        { "day": 5, "name": "Easy Full Body C", "estimated_minutes": 40, "blocks": [{ "type": "main", "items": [{ "kind": "exercise", "exercise_ref": "trap_bar_deadlift", "sets_template": { "count": 2, "set": { "reps": 5, "load": { "rpe": 6 }, "rest_seconds": 120 } } }] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+---
+import Badge from '../Badge.astro';
+import Button from '../Button.astro';
+import PageHeader from '../PageHeader.astro';
+import Section from '../Section.astro';
+import Shell from '../Shell.astro';
+import { DEFAULT_LOCALE, getMessages, type Locale } from '../../lib/i18n';
+import { issueSearchUrl, labelUrl, milestoneUrl, siteConfig } from '../../lib/siteConfig';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+const tones = ['neutral', 'primary', 'success'];
+const hrefs = [
+  issueSearchUrl('is:issue is:open label:planned'),
+  issueSearchUrl('is:issue is:open label:"in progress"'),
+  issueSearchUrl('is:issue is:closed'),
+];
+---
+
+<Shell locale={locale} canonicalPath="/roadmap" title={messages.roadmap.title} description={messages.roadmap.description}>
+  <PageHeader eyebrow={messages.roadmap.eyebrow} title={messages.roadmap.heading} intro={messages.roadmap.intro} />
+  <Section class="pt-0">
+    <div class="grid gap-4 md:grid-cols-3">
+      {(messages.roadmap.groups as [string, string[]][]).map(([status, items], index) => (
+        <article class="surface-card p-5">
+          <Badge tone={tones[index] as any}>{status}</Badge>
+          <ul class="mt-5 grid gap-3">
+            {items.map((item: string) => (
+              <li class="rounded-[var(--radius-card)] border border-subtle bg-app p-3 text-sm leading-6 text-muted">{item}</li>
+            ))}
+          </ul>
+          <Button href={hrefs[index]} external variant="secondary" class="mt-5 w-full">{messages.common.openGithubView}</Button>
+        </article>
+      ))}
+    </div>
+  </Section>
+  <Section eyebrow={messages.roadmap.github.eyebrow} title={messages.roadmap.github.title} intro={messages.roadmap.github.intro}>
+    <div class="flex flex-wrap gap-3">
+      <Button href={siteConfig.repoUrl + '/issues'} external variant="accent">{messages.roadmap.github.issues}</Button>
+      <Button href={milestoneUrl()} external variant="secondary">{messages.roadmap.github.milestones}</Button>
+      <Button href={siteConfig.projectUrl} external variant="secondary">{messages.roadmap.github.projects}</Button>
+      <Button href={labelUrl('schema')} external variant="ghost">{messages.roadmap.github.schemaLabel}</Button>
+    </div>
+  </Section>
+</Shell>

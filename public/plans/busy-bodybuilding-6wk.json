@@ -1,0 +1,915 @@
+{
+  "schema_version": "1.0",
+  "plan": {
+    "id": "busy-bodybuilding-6wk",
+    "name": "Busy Bodybuilding 6-Week",
+    "author": "Universal Fit",
+    "description": "A classical upper/lower bodybuilding plan for busy lifters: short warmups, dense hypertrophy work, smart supersets, brief conditioning, and a clear deload.",
+    "goal": "hypertrophy",
+    "level": "intermediate",
+    "duration_weeks": 6,
+    "days_per_week": 4,
+    "tags": ["bodybuilding", "hypertrophy", "upper-lower", "busy", "barbell", "dumbbell", "machine", "cardio", "mobility"]
+  },
+  "settings": {
+    "units": {
+      "weight": "kg",
+      "distance": "km",
+      "body_weight": "kg"
+    },
+    "rest_default_seconds": 75,
+    "rpe_scale": "0-10",
+    "show_warmup_sets": true,
+    "auto_warmup": {
+      "enabled": true,
+      "scheme": "ramp-main-lifts"
+    }
+  },
+  "mesocycles": [
+    {
+      "id": "base-density",
+      "name": "Base Density",
+      "goal": "Build repeatable volume with short rests and clean reps.",
+      "weeks": [1, 2]
+    },
+    {
+      "id": "build-intensify",
+      "name": "Build and Intensify",
+      "goal": "Push the main lifts heavier while keeping accessories dense.",
+      "weeks": [3, 4, 5]
+    },
+    {
+      "id": "deload",
+      "name": "Deload",
+      "goal": "Reduce fatigue, keep movement quality, and leave fresh.",
+      "weeks": [6],
+      "deload": true
+    }
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "name": "Base Density 1",
+      "notes": "Stay crisp. Most work should finish with 2-3 reps in reserve.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Strength Density",
+          "tags": ["upper", "chest", "back", "density"],
+          "estimated_minutes": 44,
+          "notes": "Bench is the priority. Supersets keep the session tight without rushing the main lift.",
+          "blocks": [
+            {
+              "type": "warmup",
+              "name": "Upper primer",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dynamic_warmup_upper",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "5min", "rest_seconds": 0, "notes": "Move continuously." }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "face_pull",
+                  "sets_template": {
+                    "count": 2,
+                    "set": { "reps": 15, "load": { "rpe": 5 }, "rest_seconds": 30 }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "main",
+              "name": "Press and row",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "barbell_bench_press",
+                  "alternate_refs": ["db_bench_press", "pushup"],
+                  "auto_warmup": true,
+                  "sets": [
+                    { "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }
+                  ],
+                  "notes": "Control the lowering. Stop before grindy reps."
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "barbell_row",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": "8-10", "load": { "rpe": 7 }, "rir_target": 2, "rest_seconds": 90, "tempo": "2-1-X-1" }
+                  }
+                },
+                {
+                  "kind": "rest",
+                  "duration_seconds": 75,
+                  "notes": "Reset before the density work."
+                }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Classic upper superset",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 60,
+                  "notes": "Alternate push and pull with controlled form.",
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "incline_db_press",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "3-0-1-0" }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "chest_supported_row",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-1-1-1" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 2,
+                  "rest_between_rounds_seconds": 45,
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "lateral_raise",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-1-2-0" }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "tricep_pushdown",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-0-2-1" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "mobility",
+              "name": "Open the rib cage",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "thoracic_rotation",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "45s", "rest_seconds": 20 }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Quad + Core",
+          "tags": ["lower", "quads", "core"],
+          "estimated_minutes": 43,
+          "blocks": [
+            {
+              "type": "warmup",
+              "name": "Lower primer",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dynamic_warmup_lower",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "5min", "rest_seconds": 0 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "air_squat",
+                  "sets_template": {
+                    "count": 2,
+                    "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 30 }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "main",
+              "name": "Squat pattern",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "barbell_front_squat",
+                  "alternate_refs": ["goblet_squat", "hack_squat"],
+                  "auto_warmup": true,
+                  "sets": [
+                    { "reps": 8, "load": { "percent_1rm": 65 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }
+                  ]
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "leg_press",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": "10-12", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "3-0-1-0" }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Legs and core giant set",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "giant_set",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 75,
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "bulgarian_split_squat",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "8-10", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "3-1-1-0" }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "cable_crunch",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "12-15", "load": { "rpe": 7 }, "rest_seconds": 0 }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "pallof_press",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": 12, "load": { "rpe": 7 }, "rest_seconds": 0 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "finisher",
+              "name": "Eight-minute flush",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "stationary_bike",
+                  "cardio": {
+                    "structure": "steady",
+                    "modality": "cycling",
+                    "target": { "duration_minutes": 8, "hr_zone": 2, "rpe_target": 5 }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "mobility",
+              "name": "Hip exit",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "couch_stretch",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "45s", "rest_seconds": 20 }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump + Arms",
+          "tags": ["upper", "pump", "arms"],
+          "estimated_minutes": 42,
+          "blocks": [
+            {
+              "type": "warmup",
+              "name": "Shoulder prep",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dynamic_warmup_upper",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "5min", "rest_seconds": 0 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "face_pull",
+                  "sets_template": {
+                    "count": 2,
+                    "set": { "reps": 10, "rest_seconds": 20 }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "main",
+              "name": "Pump foundation",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "incline_barbell_bench",
+                  "sets_template": {
+                    "count": 4,
+                    "set": { "reps": "8-10", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 90, "tempo": "3-0-1-0" }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "lat_pulldown",
+                  "sets_template": {
+                    "count": 4,
+                    "set": { "reps": "10-12", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "2-1-1-1" }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Chest, back, and arms",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 45,
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "cable_fly",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-1-2-1" }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "cable_row",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-1-1-1" }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 45,
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "barbell_curl",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0 }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "skull_crusher",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "finisher",
+              "name": "Seven-minute arm cap",
+              "items": [
+                {
+                  "kind": "amrap",
+                  "duration_minutes": 7,
+                  "round": [
+                    { "exercise_ref": "lateral_raise", "reps": 12, "load": { "rpe": 7 } },
+                    { "exercise_ref": "hammer_curl", "reps": 10, "load": { "rpe": 7 } },
+                    { "exercise_ref": "tricep_pushdown", "reps": 12, "load": { "rpe": 7 } }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Lower Posterior + Conditioning",
+          "tags": ["lower", "posterior", "conditioning"],
+          "estimated_minutes": 43,
+          "blocks": [
+            {
+              "type": "warmup",
+              "name": "Hinge prep",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "dynamic_warmup_lower",
+                  "sets_template": {
+                    "count": 1,
+                    "set": { "reps": "5min", "rest_seconds": 0 }
+                  }
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "bird_dog",
+                  "sets_template": {
+                    "count": 2,
+                    "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "main",
+              "name": "Hinge and glutes",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "romanian_deadlift",
+                  "alternate_refs": ["trap_bar_deadlift", "conventional_deadlift"],
+                  "auto_warmup": true,
+                  "sets": [
+                    { "reps": 8, "load": { "percent_1rm": 65 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }
+                  ]
+                },
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "barbell_hip_thrust",
+                  "sets_template": {
+                    "count": 3,
+                    "set": { "reps": 10, "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "2-1-X-1" }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Posterior chain circuit",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "circuit",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 60,
+                  "items": [
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "good_morning",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": 10, "load": { "rpe": 7 }, "rest_seconds": 0, "tempo": "3-1-1-0" }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "hanging_leg_raise",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 0 }
+                      }
+                    },
+                    {
+                      "kind": "exercise",
+                      "exercise_ref": "side_plank",
+                      "sets_template": {
+                        "count": 1,
+                        "set": { "reps": "30s", "load": { "bodyweight": true }, "rest_seconds": 0 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "finisher",
+              "name": "Rower intervals",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "rowing",
+                  "cardio": {
+                    "structure": "intervals",
+                    "modality": "rowing",
+                    "warmup": { "duration_minutes": 3 },
+                    "intervals": [
+                      {
+                        "repeat": 6,
+                        "work": { "duration_minutes": 0.5 },
+                        "rest": { "duration_seconds": 45, "type": "stand" }
+                      }
+                    ],
+                    "cooldown": { "duration_minutes": 3 }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "name": "Base Density 2",
+      "notes": "Add a small amount of load or one rep while keeping rests honest.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Strength Density",
+          "tags": ["upper", "chest", "back", "density"],
+          "estimated_minutes": 45,
+          "blocks": [
+            {
+              "type": "warmup",
+              "name": "Upper primer",
+              "items": [
+                { "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } },
+                { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 15, "load": { "rpe": 5 }, "rest_seconds": 30 } } }
+              ]
+            },
+            {
+              "type": "main",
+              "name": "Press and row",
+              "items": [
+                {
+                  "kind": "exercise",
+                  "exercise_ref": "barbell_bench_press",
+                  "alternate_refs": ["db_bench_press", "pushup"],
+                  "auto_warmup": true,
+                  "sets": [
+                    { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 72 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 72 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" },
+                    { "reps": 8, "load": { "percent_1rm": 72 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }
+                  ]
+                },
+                { "kind": "exercise", "exercise_ref": "barbell_row", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 7.5 }, "rir_target": 2, "rest_seconds": 90, "tempo": "2-1-X-1" } } }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Classic upper superset",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 55,
+                  "items": [
+                    { "kind": "exercise", "exercise_ref": "incline_db_press", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "3-0-1-0" } } },
+                    { "kind": "exercise", "exercise_ref": "chest_supported_row", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "2-1-1-1" } } }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "structure": "superset",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 45,
+                  "items": [
+                    { "kind": "exercise", "exercise_ref": "lateral_raise", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } },
+                    { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } }
+                  ]
+                }
+              ]
+            },
+            { "type": "mobility", "name": "Open the rib cage", "items": [{ "kind": "exercise", "exercise_ref": "thoracic_rotation", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Quad + Core",
+          "tags": ["lower", "quads", "core"],
+          "estimated_minutes": 44,
+          "blocks": [
+            { "type": "warmup", "name": "Lower primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "air_squat", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 30 } } }] },
+            {
+              "type": "main",
+              "name": "Squat pattern",
+              "items": [
+                { "kind": "exercise", "exercise_ref": "barbell_front_squat", "alternate_refs": ["goblet_squat", "hack_squat"], "auto_warmup": true, "sets": [{ "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }] },
+                { "kind": "exercise", "exercise_ref": "leg_press", "sets_template": { "count": 3, "set": { "reps": "10-12", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "3-0-1-0" } } }
+              ]
+            },
+            {
+              "type": "accessory",
+              "name": "Legs and core giant set",
+              "items": [
+                {
+                  "kind": "group",
+                  "structure": "giant_set",
+                  "rounds": 3,
+                  "rest_between_rounds_seconds": 70,
+                  "items": [
+                    { "kind": "exercise", "exercise_ref": "bulgarian_split_squat", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "3-1-1-0" } } },
+                    { "kind": "exercise", "exercise_ref": "cable_crunch", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 7.5 }, "rest_seconds": 0 } } },
+                    { "kind": "exercise", "exercise_ref": "pallof_press", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 7 }, "rest_seconds": 0 } } }
+                  ]
+                }
+              ]
+            },
+            { "type": "finisher", "name": "Ten-minute flush", "items": [{ "kind": "exercise", "exercise_ref": "stationary_bike", "cardio": { "structure": "steady", "modality": "cycling", "target": { "duration_minutes": 10, "hr_zone": 2, "rpe_target": 5 } } }] },
+            { "type": "mobility", "name": "Hip exit", "items": [{ "kind": "exercise", "exercise_ref": "couch_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump + Arms",
+          "tags": ["upper", "pump", "arms"],
+          "estimated_minutes": 43,
+          "blocks": [
+            { "type": "warmup", "name": "Shoulder prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 10, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Pump foundation", "items": [{ "kind": "exercise", "exercise_ref": "incline_barbell_bench", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 90, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "lat_pulldown", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "2-1-1-1" } } }] },
+            {
+              "type": "accessory",
+              "name": "Chest, back, and arms",
+              "items": [
+                { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 45, "items": [{ "kind": "exercise", "exercise_ref": "cable_fly", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_row", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } }] },
+                { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "barbell_curl", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "skull_crusher", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }
+              ]
+            },
+            { "type": "mobility", "name": "Shoulder exit", "items": [{ "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 1, "set": { "reps": 12, "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Lower Posterior + Conditioning",
+          "tags": ["lower", "posterior", "conditioning"],
+          "estimated_minutes": 44,
+          "blocks": [
+            { "type": "warmup", "name": "Hinge prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "bird_dog", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Hinge and glutes", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "alternate_refs": ["trap_bar_deadlift", "conventional_deadlift"], "auto_warmup": true, "sets": [{ "reps": 8, "load": { "percent_1rm": 68 }, "rir_target": 3, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 120, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_hip_thrust", "sets_template": { "count": 3, "set": { "reps": 10, "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 75, "tempo": "2-1-X-1" } } }] },
+            {
+              "type": "accessory",
+              "name": "Posterior chain circuit",
+              "items": [
+                { "kind": "group", "structure": "circuit", "rounds": 3, "rest_between_rounds_seconds": 60, "items": [{ "kind": "exercise", "exercise_ref": "good_morning", "sets_template": { "count": 1, "set": { "reps": 10, "load": { "rpe": 7.5 }, "rest_seconds": 0, "tempo": "3-1-1-0" } } }, { "kind": "exercise", "exercise_ref": "hanging_leg_raise", "sets_template": { "count": 1, "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "side_plank", "sets_template": { "count": 1, "set": { "reps": "30s", "load": { "bodyweight": true }, "rest_seconds": 0 } } }] }
+              ]
+            },
+            { "type": "finisher", "name": "Rower intervals", "items": [{ "kind": "exercise", "exercise_ref": "rowing", "cardio": { "structure": "intervals", "modality": "rowing", "warmup": { "duration_minutes": 3 }, "intervals": [{ "repeat": 7, "work": { "duration_minutes": 0.5 }, "rest": { "duration_seconds": 45, "type": "stand" } }], "cooldown": { "duration_minutes": 3 } } }] }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "name": "Build and Intensify 1",
+      "notes": "Main lifts move heavier. Accessories still use density, not sloppy speed.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Strength Density",
+          "tags": ["upper", "chest", "back", "density"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Upper primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 15, "load": { "rpe": 5 }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Press and row", "items": [{ "kind": "exercise", "exercise_ref": "barbell_bench_press", "alternate_refs": ["db_bench_press", "pushup"], "auto_warmup": true, "sets": [{ "reps": 6, "load": { "percent_1rm": 73 }, "rir_target": 3, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 75 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 75 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 75 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 75 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_row", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8 }, "rir_target": 2, "rest_seconds": 90, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Classic upper superset", "items": [{ "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 55, "items": [{ "kind": "exercise", "exercise_ref": "incline_db_press", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "chest_supported_row", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0, "tempo": "2-1-1-1" } } }] }, { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "lateral_raise", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Open the rib cage", "items": [{ "kind": "exercise", "exercise_ref": "thoracic_rotation", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Quad + Core",
+          "tags": ["lower", "quads", "core"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Lower primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "air_squat", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Squat pattern", "items": [{ "kind": "exercise", "exercise_ref": "barbell_front_squat", "alternate_refs": ["goblet_squat", "hack_squat"], "auto_warmup": true, "sets": [{ "reps": 6, "load": { "percent_1rm": 72 }, "rir_target": 3, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "leg_press", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "3-0-1-0" } } }] },
+            { "type": "accessory", "name": "Legs and core giant set", "items": [{ "kind": "group", "structure": "giant_set", "rounds": 3, "rest_between_rounds_seconds": 70, "items": [{ "kind": "exercise", "exercise_ref": "bulgarian_split_squat", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0, "tempo": "3-1-1-0" } } }, { "kind": "exercise", "exercise_ref": "cable_crunch", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "pallof_press", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 7.5 }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Ten-minute flush", "items": [{ "kind": "exercise", "exercise_ref": "stationary_bike", "cardio": { "structure": "steady", "modality": "cycling", "target": { "duration_minutes": 10, "hr_zone": 2, "rpe_target": 5 } } }] },
+            { "type": "mobility", "name": "Hip exit", "items": [{ "kind": "exercise", "exercise_ref": "couch_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump + Arms",
+          "tags": ["upper", "pump", "arms"],
+          "estimated_minutes": 44,
+          "blocks": [
+            { "type": "warmup", "name": "Shoulder prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 10, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Pump foundation", "items": [{ "kind": "exercise", "exercise_ref": "incline_barbell_bench", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 90, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "lat_pulldown", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-1-1" } } }] },
+            { "type": "accessory", "name": "Chest, back, and arms", "items": [{ "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "cable_fly", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_row", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }, { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "barbell_curl", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "skull_crusher", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Seven-minute arm cap", "items": [{ "kind": "amrap", "duration_minutes": 7, "round": [{ "exercise_ref": "lateral_raise", "reps": 12, "load": { "rpe": 7 } }, { "exercise_ref": "hammer_curl", "reps": 10, "load": { "rpe": 7 } }, { "exercise_ref": "tricep_pushdown", "reps": 12, "load": { "rpe": 7 } }] }] }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Lower Posterior + Conditioning",
+          "tags": ["lower", "posterior", "conditioning"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Hinge prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "bird_dog", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Hinge and glutes", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "alternate_refs": ["trap_bar_deadlift", "conventional_deadlift"], "auto_warmup": true, "sets": [{ "reps": 6, "load": { "percent_1rm": 72 }, "rir_target": 3, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 6, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_hip_thrust", "sets_template": { "count": 4, "set": { "reps": 8, "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Posterior chain circuit", "items": [{ "kind": "group", "structure": "circuit", "rounds": 3, "rest_between_rounds_seconds": 60, "items": [{ "kind": "exercise", "exercise_ref": "good_morning", "sets_template": { "count": 1, "set": { "reps": 10, "load": { "rpe": 8 }, "rest_seconds": 0, "tempo": "3-1-1-0" } } }, { "kind": "exercise", "exercise_ref": "hanging_leg_raise", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "bodyweight": true }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "side_plank", "sets_template": { "count": 1, "set": { "reps": "30s", "load": { "bodyweight": true }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Ten-minute EMOM", "items": [{ "kind": "emom", "duration_minutes": 10, "minute_template": [{ "exercise_ref": "kettlebell_swing", "reps": 12, "load": { "rpe": 7 } }, { "exercise_ref": "pushup", "reps": 8, "load": { "bodyweight": true } }] }] }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "name": "Build and Intensify 2",
+      "notes": "Keep main-lift loads steady and beat week 3 through cleaner execution.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Strength Density",
+          "tags": ["upper", "chest", "back", "density"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Upper primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 15, "load": { "rpe": 5 }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Press and row", "items": [{ "kind": "exercise", "exercise_ref": "barbell_bench_press", "alternate_refs": ["db_bench_press", "pushup"], "auto_warmup": true, "sets": [{ "reps": 7, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_row", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8 }, "rir_target": 1, "rest_seconds": 90, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Classic upper superset", "items": [{ "kind": "group", "structure": "superset", "rounds": 4, "rest_between_rounds_seconds": 55, "items": [{ "kind": "exercise", "exercise_ref": "incline_db_press", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "chest_supported_row", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }, { "kind": "group", "structure": "superset", "rounds": 2, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "lateral_raise", "sets_template": { "count": 1, "set": { "reps": "15-20", "load": { "rpe": 8 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": "15-20", "load": { "rpe": 8 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Open the rib cage", "items": [{ "kind": "exercise", "exercise_ref": "thoracic_rotation", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Quad + Core",
+          "tags": ["lower", "quads", "core"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Lower primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "air_squat", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Squat pattern", "items": [{ "kind": "exercise", "exercise_ref": "barbell_front_squat", "alternate_refs": ["goblet_squat", "hack_squat"], "auto_warmup": true, "sets": [{ "reps": 7, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "leg_press", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "3-0-1-0" } } }] },
+            { "type": "accessory", "name": "Legs and core giant set", "items": [{ "kind": "group", "structure": "giant_set", "rounds": 3, "rest_between_rounds_seconds": 65, "items": [{ "kind": "exercise", "exercise_ref": "bulgarian_split_squat", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_crunch", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "pallof_press", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 7.5 }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Twelve-minute flush", "items": [{ "kind": "exercise", "exercise_ref": "stationary_bike", "cardio": { "structure": "steady", "modality": "cycling", "target": { "duration_minutes": 12, "hr_zone": 2, "rpe_target": 5 } } }] },
+            { "type": "mobility", "name": "Hip exit", "items": [{ "kind": "exercise", "exercise_ref": "couch_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump + Arms",
+          "tags": ["upper", "pump", "arms"],
+          "estimated_minutes": 44,
+          "blocks": [
+            { "type": "warmup", "name": "Shoulder prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 10, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Pump foundation", "items": [{ "kind": "exercise", "exercise_ref": "incline_barbell_bench", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 90, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "lat_pulldown", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-1-1" } } }] },
+            { "type": "accessory", "name": "Chest, back, and arms", "items": [{ "kind": "group", "structure": "superset", "rounds": 4, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "cable_fly", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_row", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }, { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 35, "items": [{ "kind": "exercise", "exercise_ref": "barbell_curl", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "skull_crusher", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Shoulder exit", "items": [{ "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 1, "set": { "reps": 12, "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Lower Posterior + Conditioning",
+          "tags": ["lower", "posterior", "conditioning"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Hinge prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "bird_dog", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Hinge and glutes", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "alternate_refs": ["trap_bar_deadlift", "conventional_deadlift"], "auto_warmup": true, "sets": [{ "reps": 7, "load": { "percent_1rm": 74 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 2, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }, { "reps": 7, "load": { "percent_1rm": 76 }, "rir_target": 1, "rest_seconds": 150, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_hip_thrust", "sets_template": { "count": 4, "set": { "reps": 8, "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Posterior chain circuit", "items": [{ "kind": "group", "structure": "circuit", "rounds": 3, "rest_between_rounds_seconds": 55, "items": [{ "kind": "exercise", "exercise_ref": "good_morning", "sets_template": { "count": 1, "set": { "reps": 10, "load": { "rpe": 8 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "hanging_leg_raise", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "bodyweight": true }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "side_plank", "sets_template": { "count": 1, "set": { "reps": "30s", "load": { "bodyweight": true }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Rower intervals", "items": [{ "kind": "exercise", "exercise_ref": "rowing", "cardio": { "structure": "intervals", "modality": "rowing", "warmup": { "duration_minutes": 3 }, "intervals": [{ "repeat": 8, "work": { "duration_minutes": 0.5 }, "rest": { "duration_seconds": 40, "type": "stand" } }], "cooldown": { "duration_minutes": 3 } } }] }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "name": "Build and Intensify 3",
+      "notes": "Peak week. Hit strong top sets, then use short back-off work for volume.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Strength Density",
+          "tags": ["upper", "chest", "back", "density"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Upper primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 15, "load": { "rpe": 5 }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Press and row", "items": [{ "kind": "exercise", "exercise_ref": "barbell_bench_press", "alternate_refs": ["db_bench_press", "pushup"], "auto_warmup": true, "sets": [{ "reps": 5, "load": { "percent_1rm": 78 }, "rpe_target": 8.5, "rest_seconds": 150, "tempo": "3-1-X-0", "notes": "Top set." }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_row", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 8.5 }, "rir_target": 1, "rest_seconds": 90, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Classic upper superset", "items": [{ "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 50, "items": [{ "kind": "exercise", "exercise_ref": "incline_db_press", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "chest_supported_row", "sets_template": { "count": 1, "set": { "reps": "8-10", "load": { "rpe": 9 }, "rest_seconds": 0 } } }] }, { "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 35, "items": [{ "kind": "exercise", "exercise_ref": "lateral_raise", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Open the rib cage", "items": [{ "kind": "exercise", "exercise_ref": "thoracic_rotation", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Quad + Core",
+          "tags": ["lower", "quads", "core"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Lower primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "air_squat", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "bodyweight": true }, "rest_seconds": 30 } } }] },
+            { "type": "main", "name": "Squat pattern", "items": [{ "kind": "exercise", "exercise_ref": "barbell_front_squat", "alternate_refs": ["goblet_squat", "hack_squat"], "auto_warmup": true, "sets": [{ "reps": 5, "load": { "percent_1rm": 78 }, "rpe_target": 8.5, "rest_seconds": 150, "tempo": "3-1-X-0", "notes": "Top set." }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "leg_press", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 9 }, "rir_target": 1, "rest_seconds": 75, "tempo": "3-0-1-0" } } }] },
+            { "type": "accessory", "name": "Legs and core giant set", "items": [{ "kind": "group", "structure": "giant_set", "rounds": 3, "rest_between_rounds_seconds": 60, "items": [{ "kind": "exercise", "exercise_ref": "bulgarian_split_squat", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_crunch", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "pallof_press", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 8 }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Eight-minute flush", "items": [{ "kind": "exercise", "exercise_ref": "stationary_bike", "cardio": { "structure": "steady", "modality": "cycling", "target": { "duration_minutes": 8, "hr_zone": 2, "rpe_target": 5 } } }] },
+            { "type": "mobility", "name": "Hip exit", "items": [{ "kind": "exercise", "exercise_ref": "couch_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump + Arms",
+          "tags": ["upper", "pump", "arms"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Shoulder prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 2, "set": { "reps": 10, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Pump foundation", "items": [{ "kind": "exercise", "exercise_ref": "incline_barbell_bench", "sets_template": { "count": 4, "set": { "reps": "8-10", "load": { "rpe": 9 }, "rir_target": 1, "rest_seconds": 90, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "lat_pulldown", "sets_template": { "count": 4, "set": { "reps": "10-12", "load": { "rpe": 9 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-1-1" } } }] },
+            { "type": "accessory", "name": "Chest, back, and arms", "items": [{ "kind": "group", "structure": "superset", "rounds": 3, "rest_between_rounds_seconds": 35, "items": [{ "kind": "exercise", "exercise_ref": "cable_fly", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "cable_row", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }] }, { "kind": "group", "structure": "drop_set", "rounds": 2, "rest_between_rounds_seconds": 45, "notes": "Use the same station. Reduce load once and keep moving.", "items": [{ "kind": "exercise", "exercise_ref": "lateral_raise", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "barbell_curl", "sets_template": { "count": 1, "set": { "reps": "10-12", "load": { "rpe": 9 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": "12-15", "load": { "rpe": 9 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Shoulder exit", "items": [{ "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 1, "set": { "reps": 12, "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Lower Posterior + Conditioning",
+          "tags": ["lower", "posterior", "conditioning"],
+          "estimated_minutes": 45,
+          "blocks": [
+            { "type": "warmup", "name": "Hinge prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "bird_dog", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Hinge and glutes", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "alternate_refs": ["trap_bar_deadlift", "conventional_deadlift"], "auto_warmup": true, "sets": [{ "reps": 5, "load": { "percent_1rm": 78 }, "rpe_target": 8.5, "rest_seconds": 150, "tempo": "3-1-X-0", "notes": "Top set." }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }, { "reps": 8, "load": { "percent_1rm": 70 }, "rir_target": 2, "rest_seconds": 105, "tempo": "3-1-X-0" }] }, { "kind": "exercise", "exercise_ref": "barbell_hip_thrust", "sets_template": { "count": 4, "set": { "reps": 8, "load": { "rpe": 9 }, "rir_target": 1, "rest_seconds": 75, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Posterior chain circuit", "items": [{ "kind": "group", "structure": "circuit", "rounds": 3, "rest_between_rounds_seconds": 55, "items": [{ "kind": "exercise", "exercise_ref": "good_morning", "sets_template": { "count": 1, "set": { "reps": 10, "load": { "rpe": 8.5 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "hanging_leg_raise", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "bodyweight": true }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "side_plank", "sets_template": { "count": 1, "set": { "reps": "30s", "load": { "bodyweight": true }, "rest_seconds": 0 } } }] }] },
+            { "type": "finisher", "name": "Rower intervals", "items": [{ "kind": "exercise", "exercise_ref": "rowing", "cardio": { "structure": "intervals", "modality": "rowing", "warmup": { "duration_minutes": 3 }, "intervals": [{ "repeat": 8, "work": { "duration_minutes": 0.5 }, "rest": { "duration_seconds": 35, "type": "stand" } }], "cooldown": { "duration_minutes": 3 } } }] }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "name": "Deload and Resensitize",
+      "deload": true,
+      "notes": "Reduce load and volume. Finish every session feeling better than when you started.",
+      "days": [
+        {
+          "day": 1,
+          "name": "Upper Deload",
+          "tags": ["upper", "deload"],
+          "estimated_minutes": 36,
+          "blocks": [
+            { "type": "warmup", "name": "Upper primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }] },
+            { "type": "main", "name": "Easy press and row", "items": [{ "kind": "exercise", "exercise_ref": "barbell_bench_press", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "percent_1rm": 60 }, "rir_target": 4, "rest_seconds": 90, "tempo": "3-1-X-0" } } }, { "kind": "exercise", "exercise_ref": "barbell_row", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "rpe": 6 }, "rir_target": 4, "rest_seconds": 75, "tempo": "2-1-X-1" } } }] },
+            { "type": "accessory", "name": "Light upper pump", "items": [{ "kind": "group", "structure": "superset", "rounds": 2, "rest_between_rounds_seconds": 45, "items": [{ "kind": "exercise", "exercise_ref": "incline_db_press", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 6 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "chest_supported_row", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 6 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Open the rib cage", "items": [{ "kind": "exercise", "exercise_ref": "thoracic_rotation", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Lower Deload",
+          "tags": ["lower", "deload"],
+          "estimated_minutes": 36,
+          "blocks": [
+            { "type": "warmup", "name": "Lower primer", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }] },
+            { "type": "main", "name": "Easy squat pattern", "items": [{ "kind": "exercise", "exercise_ref": "barbell_front_squat", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "percent_1rm": 58 }, "rir_target": 4, "rest_seconds": 90, "tempo": "3-1-X-0" } } }, { "kind": "exercise", "exercise_ref": "leg_press", "sets_template": { "count": 2, "set": { "reps": 12, "load": { "rpe": 6 }, "rir_target": 4, "rest_seconds": 60, "tempo": "3-0-1-0" } } }] },
+            { "type": "finisher", "name": "Easy bike flush", "items": [{ "kind": "exercise", "exercise_ref": "stationary_bike", "cardio": { "structure": "steady", "modality": "cycling", "target": { "duration_minutes": 8, "hr_zone": 2, "rpe_target": 4 } } }] },
+            { "type": "mobility", "name": "Hip exit", "items": [{ "kind": "exercise", "exercise_ref": "couch_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Upper Pump Deload",
+          "tags": ["upper", "pump", "deload"],
+          "estimated_minutes": 35,
+          "blocks": [
+            { "type": "warmup", "name": "Shoulder prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_upper", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 1, "set": { "reps": 10, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Light pump foundation", "items": [{ "kind": "exercise", "exercise_ref": "incline_barbell_bench", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "rpe": 6 }, "rir_target": 4, "rest_seconds": 75, "tempo": "3-0-1-0" } } }, { "kind": "exercise", "exercise_ref": "lat_pulldown", "sets_template": { "count": 2, "set": { "reps": 12, "load": { "rpe": 6 }, "rir_target": 4, "rest_seconds": 60, "tempo": "2-1-1-1" } } }] },
+            { "type": "accessory", "name": "Arms easy", "items": [{ "kind": "group", "structure": "superset", "rounds": 2, "rest_between_rounds_seconds": 40, "items": [{ "kind": "exercise", "exercise_ref": "barbell_curl", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 6 }, "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "tricep_pushdown", "sets_template": { "count": 1, "set": { "reps": 12, "load": { "rpe": 6 }, "rest_seconds": 0 } } }] }] },
+            { "type": "mobility", "name": "Shoulder exit", "items": [{ "kind": "exercise", "exercise_ref": "face_pull", "sets_template": { "count": 1, "set": { "reps": 12, "rest_seconds": 20 } } }] }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Posterior Deload + Easy Conditioning",
+          "tags": ["lower", "posterior", "deload"],
+          "estimated_minutes": 36,
+          "blocks": [
+            { "type": "warmup", "name": "Hinge prep", "items": [{ "kind": "exercise", "exercise_ref": "dynamic_warmup_lower", "sets_template": { "count": 1, "set": { "reps": "5min", "rest_seconds": 0 } } }, { "kind": "exercise", "exercise_ref": "bird_dog", "sets_template": { "count": 1, "set": { "reps": 8, "load": { "bodyweight": true }, "rest_seconds": 20 } } }] },
+            { "type": "main", "name": "Easy hinge and glutes", "items": [{ "kind": "exercise", "exercise_ref": "romanian_deadlift", "sets_template": { "count": 2, "set": { "reps": 8, "load": { "percent_1rm": 58 }, "rir_target": 4, "rest_seconds": 90, "tempo": "3-1-X-0" } } }, { "kind": "exercise", "exercise_ref": "barbell_hip_thrust", "sets_template": { "count": 2, "set": { "reps": 10, "load": { "rpe": 6 }, "rir_target": 4, "rest_seconds": 60, "tempo": "2-1-X-1" } } }] },
+            { "type": "finisher", "name": "Easy row flush", "items": [{ "kind": "exercise", "exercise_ref": "rowing", "cardio": { "structure": "steady", "modality": "rowing", "target": { "duration_minutes": 8, "hr_zone": 2, "rpe_target": 4 } } }] },
+            { "type": "mobility", "name": "Reset", "items": [{ "kind": "exercise", "exercise_ref": "90_90_hip_stretch", "sets_template": { "count": 1, "set": { "reps": "45s", "rest_seconds": 20 } } }] }
+          ]
+        }
+      ]
+    }
+  ]
+}

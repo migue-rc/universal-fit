@@ -1,0 +1,53 @@
+name: Bug report
+description: Something in the app or website is not working as expected.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping make Universal Fit sharper. Include the smallest JSON snippet that reproduces import or validation issues.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - App import or validation
+        - Active session tracking
+        - Plan library or plan detail
+        - Website or docs
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Import this JSON...\n2. Tap...\n3. See..."
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - iOS
+        - Android
+        - Website
+        - Not sure
+  - type: textarea
+    id: json
+    attributes:
+      label: Related plan JSON
+      render: json

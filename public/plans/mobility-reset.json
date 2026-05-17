@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "plan": {
+    "id": "mobility-reset-2wk",
+    "name": "Mobility Reset 2-Week",
+    "author": "Universal Fit",
+    "description": "Short daily mobility sessions for stiff hips, shoulders, and ankles.",
+    "goal": "mobility",
+    "level": "beginner",
+    "duration_weeks": 2,
+    "days_per_week": 5,
+    "tags": ["mobility", "bodyweight", "recovery"]
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "days": [
+        { "day": 1, "name": "Hips and Ankles", "estimated_minutes": 18, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "worlds_greatest_stretch", "sets_template": { "count": 2, "set": { "reps": "45s", "rest_seconds": 20 } } }, { "kind": "exercise", "exercise_ref": "deep_squat_hold", "sets_template": { "count": 2, "set": { "reps": "60s", "rest_seconds": 30 } } }] }] },
+        { "day": 2, "name": "Shoulders", "estimated_minutes": 15, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "wall_slides", "sets_template": { "count": 3, "set": { "reps": 10, "rest_seconds": 20 } } }] }] },
+        { "day": 3, "name": "Spine", "estimated_minutes": 15, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "cat_cow", "sets_template": { "count": 2, "set": { "reps": 12, "rest_seconds": 20 } } }] }] },
+        { "day": 4, "name": "Hips and Ankles", "estimated_minutes": 18, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "worlds_greatest_stretch", "sets_template": { "count": 2, "set": { "reps": "45s", "rest_seconds": 20 } } }] }] },
+        { "day": 5, "name": "Shoulders", "estimated_minutes": 15, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "wall_slides", "sets_template": { "count": 3, "set": { "reps": 10, "rest_seconds": 20 } } }] }] }
+      ]
+    },
+    {
+      "week": 2,
+      "days": [
+        { "day": 1, "name": "Hips and Ankles", "estimated_minutes": 20, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "worlds_greatest_stretch", "sets_template": { "count": 3, "set": { "reps": "45s", "rest_seconds": 20 } } }] }] },
+        { "day": 2, "name": "Shoulders", "estimated_minutes": 18, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "wall_slides", "sets_template": { "count": 3, "set": { "reps": 12, "rest_seconds": 20 } } }] }] },
+        { "day": 3, "name": "Spine", "estimated_minutes": 18, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "cat_cow", "sets_template": { "count": 3, "set": { "reps": 12, "rest_seconds": 20 } } }] }] },
+        { "day": 4, "name": "Hips and Ankles", "estimated_minutes": 20, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "deep_squat_hold", "sets_template": { "count": 3, "set": { "reps": "60s", "rest_seconds": 30 } } }] }] },
+        { "day": 5, "name": "Full Reset", "estimated_minutes": 22, "blocks": [{ "type": "mobility", "items": [{ "kind": "exercise", "exercise_ref": "worlds_greatest_stretch", "sets_template": { "count": 2, "set": { "reps": "60s", "rest_seconds": 20 } } }, { "kind": "exercise", "exercise_ref": "cat_cow", "sets_template": { "count": 2, "set": { "reps": 12, "rest_seconds": 20 } } }] }] }
+      ]
+    }
+  ]
+}

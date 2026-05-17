@@ -1,0 +1,22 @@
+---
+import Button from './Button.astro';
+import { DEFAULT_LOCALE, getMessages, type Locale } from '../lib/i18n';
+import { siteConfig } from '../lib/siteConfig';
+
+interface Props {
+  class?: string;
+  locale?: Locale;
+}
+
+const { class: className = '', locale = DEFAULT_LOCALE } = Astro.props;
+const messages = getMessages(locale);
+---
+
+<div class={`flex flex-wrap gap-3 ${className}`}>
+  <Button href={siteConfig.iosAppUrl || undefined} variant="accent" disabled={!siteConfig.iosAppUrl} external>
+    {siteConfig.iosAppUrl ? 'iOS' : messages.downloads.iosComingSoon}
+  </Button>
+  <Button href={siteConfig.androidAppUrl || undefined} variant="secondary" disabled={!siteConfig.androidAppUrl} external>
+    {siteConfig.androidAppUrl ? 'Android' : messages.downloads.androidComingSoon}
+  </Button>
+</div>

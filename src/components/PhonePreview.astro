@@ -1,0 +1,28 @@
+---
+import { withBase } from '../lib/siteConfig';
+
+interface Props {
+  image?: string;
+  alt?: string;
+  class?: string;
+}
+
+const {
+  image = withBase('/assets/screens/workout-home.webp'),
+  alt = 'Universal Fit mobile app screen',
+  class: className = '',
+} = Astro.props;
+---
+
+<figure class={`relative mx-auto w-full max-w-[21rem] ${className}`}>
+  <div class="rounded-[2rem] border border-border-strong bg-black p-3 shadow-soft">
+    <img
+      src={image}
+      alt={alt}
+      class="aspect-[230/498] w-full rounded-[1.35rem] object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <figcaption class="sr-only">{alt}</figcaption>
+</figure>

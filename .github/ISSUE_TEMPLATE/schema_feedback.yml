@@ -1,0 +1,27 @@
+name: Schema or docs feedback
+description: Report unclear plan JSON rules, docs, or exercise-library references.
+title: "[Schema/docs]: "
+labels: ["schema", "documentation", "needs-triage"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - LLM brief
+        - Full schema reference
+        - Exercise library
+        - Example plans
+        - Website copy
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: What was confusing?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording or behavior

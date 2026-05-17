@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="500" viewBox="0 0 1024 500" role="img" aria-labelledby="title desc">
+  <title id="title">Universal Fit Google Play feature graphic</title>
+  <desc id="desc">A dark promotional graphic for Universal Fit with the app icon, workout screenshots, and the message Portable workout plans.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050605"/>
+      <stop offset="0.5" stop-color="#0d0d0d"/>
+      <stop offset="1" stop-color="#141714"/>
+    </linearGradient>
+    <radialGradient id="accentGlow" cx="76%" cy="34%" r="48%">
+      <stop offset="0" stop-color="#c6ff00" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#2d7dff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#050605" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="blueGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#3c82ff" flood-opacity="0.65"/>
+    </filter>
+    <clipPath id="phoneClipA">
+      <rect x="690" y="116" width="152" height="328" rx="26"/>
+    </clipPath>
+    <clipPath id="phoneClipB">
+      <rect x="806" y="74" width="156" height="338" rx="28"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#background)"/>
+  <rect width="1024" height="500" fill="url(#grid)"/>
+  <rect width="1024" height="500" fill="url(#accentGlow)"/>
+
+  <g transform="translate(64 72)">
+    <image xlink:href="../../icons/app-icon.png" x="0" y="0" width="86" height="86" preserveAspectRatio="xMidYMid meet"/>
+    <text x="0" y="158" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="800" letter-spacing="0">Universal Fit</text>
+    <text x="0" y="222" fill="#c6ff00" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="0">Portable workout plans.</text>
+    <text x="0" y="274" fill="#d7dad8" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="600" letter-spacing="0">Build. Import. Train offline.</text>
+
+    <g transform="translate(0 322)">
+      <rect x="0" y="0" width="216" height="54" rx="16" fill="#c6ff00"/>
+      <text x="28" y="35" fill="#101310" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="800" letter-spacing="0">JSON to sessions</text>
+      <rect x="236" y="0" width="154" height="54" rx="16" fill="#151916" stroke="#2f372f" stroke-width="1"/>
+      <text x="265" y="35" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="800" letter-spacing="0">AI-ready</text>
+    </g>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="671" y="98" width="190" height="366" rx="34" fill="#0d0d0d" stroke="#313632" stroke-width="2"/>
+    <image xlink:href="../../screens/screen-generate-ai.jpg" x="690" y="116" width="152" height="328" clip-path="url(#phoneClipA)" preserveAspectRatio="xMidYMid slice"/>
+
+    <rect x="786" y="54" width="196" height="378" rx="36" fill="#0d0d0d" stroke="#414941" stroke-width="2"/>
+    <image xlink:href="../../screens/workout-home.jpg" x="806" y="74" width="156" height="338" clip-path="url(#phoneClipB)" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+
+  <rect x="738" y="34" width="212" height="5" rx="2.5" fill="#2d7dff" filter="url(#blueGlow)"/>
+  <circle cx="864" cy="443" r="35" fill="#c6ff00" fill-opacity="0.12"/>
+  <circle cx="864" cy="443" r="19" fill="#c6ff00" fill-opacity="0.8"/>
+</svg>

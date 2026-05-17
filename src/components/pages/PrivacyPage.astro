@@ -3,6 +3,7 @@ import PageHeader from '../PageHeader.astro';
 import Section from '../Section.astro';
 import Shell from '../Shell.astro';
 import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n';
+import { appStoreConfig, siteConfig } from '../../lib/siteConfig';
 
 interface Props {
   locale?: Locale;
@@ -14,7 +15,7 @@ const policySections = [
   {
     title: 'Who we are',
     body: [
-      'Universal Fit is provided by Debloat. You can contact us about this policy or privacy questions at support@debloat.us.',
+      `Universal Fit is provided by Debloat. You can contact us about this policy or privacy questions at ${siteConfig.supportEmail}.`,
       'This policy covers the Universal Fit mobile app and the Universal Fit public website.',
     ],
   },
@@ -54,6 +55,7 @@ const policySections = [
     ],
   },
   {
+    id: 'privacy-choices',
     title: 'Retention and deletion',
     body: [
       'Workout data remains on your device until you delete it, delete the app data, or uninstall the app. Deleting a plan in the app is intended to remove that plan and related sessions from local app storage.',
@@ -93,7 +95,7 @@ const policySections = [
           <p class="text-sm font-bold uppercase text-accent">Last updated: May 17, 2026</p>
           <h2 class="mt-3 text-2xl font-black text-white">Universal Fit by Debloat</h2>
           <p class="mt-3 max-w-3xl leading-7 text-muted">
-            Contact Debloat at <a class="font-semibold text-accent" href="mailto:support@debloat.us">support@debloat.us</a>.
+            Contact Debloat at <a class="font-semibold text-accent" href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.
           </p>
         </div>
         <div class="rounded-[7px] border border-subtle bg-app px-4 py-3 text-sm font-semibold text-white">
@@ -103,7 +105,7 @@ const policySections = [
 
       <div class="mt-8 grid gap-8">
         {policySections.map((section) => (
-          <section>
+          <section id={section.id}>
             <h2 class="text-xl font-black text-white">{section.title}</h2>
             <div class="mt-3 grid gap-3">
               {section.body.map((paragraph) => (
@@ -120,6 +122,10 @@ const policySections = [
           Store privacy forms must match the actual app version submitted for review. If a later release adds any SDK or feature
           that transmits user data off the device, Debloat will update this policy and the store privacy answers before release.
         </p>
+        <div class="mt-4 grid gap-2 text-sm">
+          <a class="break-all text-accent" href={appStoreConfig.privacyPolicyUrl}>Privacy Policy URL: {appStoreConfig.privacyPolicyUrl}</a>
+          <a class="break-all text-accent" href={appStoreConfig.userPrivacyChoicesUrl}>User Privacy Choices URL: {appStoreConfig.userPrivacyChoicesUrl}</a>
+        </div>
       </div>
     </div>
   </Section>
